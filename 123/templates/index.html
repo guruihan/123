@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文提示注入排行榜</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义 CSS -->
+    <style>
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 .2rem .5rem rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">中文提示注入排行榜</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">TOP10 危险指令成功率</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>指令</th>
+                                    <th>成功率</th>
+                                    <th>风险等级</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in top_10_data %}
+                                <tr>
+                                    <td>{{ item.hidden_cmd }}</td>
+                                    <td>{{ item.success_rate }}</td>
+                                    <td>{{ item.risk_level }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">指令类型统计</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>指令类型</th>
+                                    <th>平均成功率</th>
+                                    <th>高风险指令数量</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in type_stats_data %}
+                                <tr>
+                                    <td>{{ item.cmd_types }}</td>
+                                    <td>{{ item.avg_success }}</td>
+                                    <td>{{ item.high_risk_count }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
